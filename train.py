@@ -49,7 +49,11 @@ classifier.add(Dense(output_dim = 128, activation='relu'))
 classifier.add(Dropout(0.25))
 classifier.add(Dense(output_dim = 25, activation='softmax'))
 
-classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+from keras import optimizers
+
+adam = optimizers.Adam(lr=0.0001)
+
+classifier.compile(optimizer=adam, loss='categorical_crossentropy', metrics=['accuracy'])
 
 #Fit images to Model
 from keras.preprocessing.image import ImageDataGenerator
@@ -82,7 +86,7 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
 #fix test set, put it in the right format, watch video again
 from keras.callbacks import ModelCheckpoint
 
-filepath = "weights-256-full.h5"
+filepath = "weights-adam-0_0001.h5"
 checkpoint = ModelCheckpoint(filepath, monitor='acc', verbose=1, save_best_only=True, save_weights_only=False, mode='max')
 
 classifier.fit_generator(training_set,
