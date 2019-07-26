@@ -17,31 +17,13 @@ def main():
         for entry in os.listdir(basepath + "/" + test_class):
             image = cv2.imread(basepath + "/" + test_class + "/" + entry)
             
-#==============================================================================
-#             rotate15 = imutils.rotate(image.copy(), 15)
-#             cv2.imwrite(basepath + "/" + test_class + "/" + "rotate15-" + entry,rotate15)
-#             
-#==============================================================================
             rotate105 = imutils.rotate(image.copy(), 105)
             rotate105 = noisy("speckle", rotate105)
             cv2.imwrite(basepath + "/" + test_class + "/" + "rotate105_speckle-" + entry,rotate105)
             
             flip = cv2.flip(image.copy(), 0)
             cv2.imwrite(basepath + "/" + test_class + "/" + "flip-" + entry,flip)
-#==============================================================================
-#              
-#             rotate90 = imutils.rotate(image.copy(), 90)
-#             cv2.imwrite(basepath + "/" + test_class + "/" + "rotate_90-" + entry,rotate90)
-#              
-#             rotate180 = imutils.rotate(image.copy(), 180)
-#             cv2.imwrite(basepath + "/" + test_class + "/" + "rotate_180-" + entry,rotate180)
-#              
-#==============================================================================
-#==============================================================================
-#             wn = noisy("s&p", image.copy())
-#             cv2.imwrite(basepath + "/" + test_class + "/" + "white_noise-" + entry,wn)
-#             
-#==============================================================================
+
             speckle = noisy("speckle", image.copy())
             cv2.imwrite(basepath + "/" + test_class + "/" + "speckle-" + entry,speckle)
 
